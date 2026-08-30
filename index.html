@@ -1,17 +1,30 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>My Catalogue</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+
+/* =========================
+   BODY
+========================= */
 
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -19,327 +32,719 @@ body {
     color: #222;
 }
 
-/* Header */
+
+/* =========================
+   HEADER
+========================= */
+
 .header {
+
     height: 110px;
+
     background: #fff;
+
     display: flex;
+
     align-items: center;
+
     padding: 0 32px;
+
     gap: 30px;
+
     border-bottom: 1px solid #eee;
 }
 
+
 .logo {
+
     font-family: Georgia, serif;
+
     font-size: 34px;
+
     font-weight: 600;
+
     white-space: nowrap;
 }
 
+
 .search-box {
+
     margin-left: auto;
+
     width: 265px;
+
     height: 64px;
+
     border: 1px solid #ddd;
+
     border-radius: 16px;
+
     background: #f8f7f4;
+
     display: flex;
+
     align-items: center;
+
     padding: 0 20px;
+
     gap: 15px;
 }
 
+
 .search-icon {
+
     font-size: 27px;
+
     color: #777;
 }
+
 
 .search-box input {
+
     border: none;
+
     outline: none;
+
     background: transparent;
+
     width: 100%;
+
     font-size: 18px;
 }
 
+
 .item-count {
+
     font-size: 18px;
+
     color: #777;
+
     white-space: nowrap;
 }
 
-/* Categories */
+
+/* =========================
+   CATEGORIES
+========================= */
+
 .categories {
+
     height: 90px;
+
     background: #fff;
+
     display: flex;
+
     align-items: center;
+
     gap: 55px;
+
     padding: 0 65px;
+
     border-bottom: 1px solid #ddd;
+
     overflow-x: auto;
 }
 
+
 .category {
+
     height: 90px;
+
     display: flex;
+
     align-items: center;
+
     position: relative;
+
     font-size: 21px;
+
     color: #555;
+
     white-space: nowrap;
+
     cursor: pointer;
 }
 
+
 .category.active {
+
     color: #b79b62;
 }
 
+
 .category.active::after {
+
     content: "";
+
     position: absolute;
+
     bottom: 0;
+
     left: -35px;
+
     right: -35px;
+
     height: 4px;
+
     background: #b79b62;
 }
 
-/* Sorting */
+
+/* =========================
+   SORT
+========================= */
+
 .sort-section {
+
     height: 105px;
+
     display: flex;
+
     align-items: center;
+
     gap: 20px;
+
     padding: 0 32px;
+
+    overflow-x: auto;
 }
+
 
 .sort-title {
+
     font-size: 18px;
+
     color: #777;
+
     letter-spacing: 1px;
+
     margin-right: 5px;
+
+    white-space: nowrap;
 }
+
 
 .sort-btn {
+
     border: none;
+
     padding: 15px 27px;
+
     border-radius: 30px;
+
     background: #fff;
+
     font-size: 18px;
+
     color: #555;
+
     cursor: pointer;
+
+    white-space: nowrap;
 }
 
+
 .sort-btn.active {
+
     background: #d2b16e;
+
     color: #fff;
 }
 
-/* Catalogue */
+
+/* =========================
+   CATALOGUE
+========================= */
+
 .catalogue {
+
     padding: 0 32px 50px;
+
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
     gap: 28px;
 }
 
+
 .product-card {
+
     background: #fff;
+
     border-radius: 25px;
+
     overflow: hidden;
+
     border: 1px solid #e8e8e8;
-    transition: transform .2s, box-shadow .2s;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
 }
+
 
 .product-card:hover {
+
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.08);
 }
 
+
+/* =========================
+   IMAGE
+========================= */
+
 .product-image {
+
     width: 100%;
+
     aspect-ratio: 1.15 / 1;
+
     background: #eee;
+
     overflow: hidden;
 }
 
+
 .product-image img {
+
     width: 100%;
+
     height: 100%;
+
     object-fit: cover;
+
     display: block;
 }
 
-.product-info {
-    padding: 25px 28px 30px;
+
+.product-image a {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
 }
 
+
+/* =========================
+   PRODUCT INFO
+========================= */
+
+.product-info {
+
+    padding:
+        25px
+        28px
+        30px;
+}
+
+
 .product-code {
+
     color: #c1a15e;
+
     font-size: 18px;
+
     font-weight: 600;
+
     margin-bottom: 10px;
 }
 
+
 .product-name {
+
     font-size: 25px;
+
     margin-bottom: 15px;
 }
 
+
 .product-date {
+
     color: #888;
+
     font-size: 18px;
 }
 
-/* Desktop */
-@media (min-width: 900px) {
-    .catalogue {
-        grid-template-columns: repeat(3, 1fr);
-    }
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 80px 20px;
+
+    color: #888;
+
+    font-size: 20px;
 }
 
-/* Mobile */
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media (min-width: 900px) {
+
+    .catalogue {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 600px) {
 
     .header {
+
         height: 85px;
+
         padding: 0 18px;
+
         gap: 10px;
     }
 
+
     .logo {
+
         font-size: 25px;
     }
 
+
     .search-box {
+
         width: 44px;
+
         height: 48px;
+
         padding: 0;
+
         justify-content: center;
+
         border-radius: 14px;
     }
 
+
     .search-box input {
+
         display: none;
     }
 
+
     .search-icon {
+
         font-size: 22px;
     }
 
+
     .item-count {
+
         font-size: 14px;
     }
 
+
     .categories {
+
         height: 72px;
+
         padding: 0 32px;
+
         gap: 45px;
     }
 
+
     .category {
+
         height: 72px;
+
         font-size: 17px;
     }
 
+
     .category.active::after {
+
         left: -30px;
+
         right: -30px;
     }
 
+
     .sort-section {
+
         height: 95px;
+
         padding: 0 30px;
+
         gap: 12px;
-        overflow-x: auto;
     }
 
+
     .sort-title {
+
         font-size: 15px;
+
         min-width: 75px;
     }
 
+
     .sort-btn {
+
         font-size: 15px;
+
         padding: 13px 20px;
-        white-space: nowrap;
     }
 
+
     .catalogue {
-        padding: 0 32px 40px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        padding:
+            0
+            32px
+            40px;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
         gap: 24px;
     }
 
+
     .product-card {
+
         border-radius: 22px;
     }
 
+
     .product-info {
-        padding: 20px 27px 25px;
+
+        padding:
+            20px
+            27px
+            25px;
     }
 
+
     .product-code {
+
         font-size: 15px;
+
         margin-bottom: 9px;
     }
 
+
     .product-name {
+
         font-size: 20px;
+
         margin-bottom: 12px;
     }
 
+
     .product-date {
+
         font-size: 15px;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
 <header class="header">
 
-    <div class="logo">My Catalogue</div>
+    <div class="logo">
+        My Catalogue
+    </div>
+
 
     <div class="search-box">
-        <span class="search-icon">⌕</span>
+
+        <span class="search-icon">
+            ⌕
+        </span>
+
+
         <input
             type="text"
             id="searchInput"
             placeholder="Search items..."
+            autocomplete="off"
         >
+
     </div>
 
-    <div class="item-count" id="itemCount">
+
+    <div
+        class="item-count"
+        id="itemCount"
+    >
         0 items
     </div>
 
 </header>
 
 
+
+<!-- ==================================================
+     CATEGORIES
+================================================== -->
+
 <nav class="categories">
 
-    <div class="category active" data-category="all">All</div>
-    <div class="category" data-category="khilone">Khilone</div>
-    <div class="category" data-category="mukut set">Mukut Set</div>
-    <div class="category" data-category="nath">Nath</div>
-    <div class="category" data-category="jardogi mukut">Jardogi Mukut</div>
-    <div class="category" data-category="ramadarbar">Ramadarbar</div>
-    <div class="category" data-category="kamarband">Kamarband</div>
-    <div class="category" data-category="bali">Bali</div>
-    <div class="category" data-category="poshak">Poshak</div>
-    <div class="category" data-category="payal">Payal</div>
-    <div class="category" data-category="mala">Mala</div>
-    <div class="category" data-category="jhula">Jhula</div>
-    <div class="category" data-category="bansi">Bansi</div>
-    <div class="category" data-category="baal">Baal</div>
-    <div class="category" data-category="kada">Kadha</div>
+    <div
+        class="category active"
+        data-category="all"
+    >
+        All
+    </div>
+
+
+    <div
+        class="category"
+        data-category="khilone"
+    >
+        Khilone
+    </div>
+
+
+    <div
+        class="category"
+        data-category="mukut set"
+    >
+        Mukut Set
+    </div>
+
+
+    <div
+        class="category"
+        data-category="nath"
+    >
+        Nath
+    </div>
+
+
+    <div
+        class="category"
+        data-category="jardogi mukut"
+    >
+        Jardogi Mukut
+    </div>
+
+
+    <div
+        class="category"
+        data-category="ramadarbar"
+    >
+        Ramadarbar
+    </div>
+
+
+    <div
+        class="category"
+        data-category="kamarband"
+    >
+        Kamarband
+    </div>
+
+
+    <div
+        class="category"
+        data-category="bali"
+    >
+        Bali
+    </div>
+
+
+    <div
+        class="category"
+        data-category="poshak"
+    >
+        Poshak
+    </div>
+
+
+    <div
+        class="category"
+        data-category="payal"
+    >
+        Payal
+    </div>
+
+
+    <div
+        class="category"
+        data-category="mala"
+    >
+        Mala
+    </div>
+
+
+    <div
+        class="category"
+        data-category="jhula"
+    >
+        Jhula
+    </div>
+
+
+    <div
+        class="category"
+        data-category="bansi"
+    >
+        Bansi
+    </div>
+
+
+    <div
+        class="category"
+        data-category="baal"
+    >
+        Baal
+    </div>
+
+
+    <div
+        class="category"
+        data-category="kada"
+    >
+        Kadha
+    </div>
 
 </nav>
 
+
+
+<!-- ==================================================
+     SORT
+================================================== -->
 
 <section class="sort-section">
 
@@ -347,880 +752,1267 @@ body {
         SORT BY
     </div>
 
-    <button class="sort-btn active" data-sort="newest">
+
+    <button
+        class="sort-btn active"
+        data-sort="newest"
+    >
         Newest first
     </button>
 
-    <button class="sort-btn" data-sort="oldest">
+
+    <button
+        class="sort-btn"
+        data-sort="oldest"
+    >
         Oldest first
     </button>
 
-    <button class="sort-btn" data-sort="az">
+
+    <button
+        class="sort-btn"
+        data-sort="az"
+    >
         A → Z
     </button>
 
 </section>
 
 
-<main class="catalogue" id="catalogue">
 
+<!-- ==================================================
+     PRODUCTS
 
-    <!-- Product 1 -->
-    <article
-        class="product-card"
-        data-category="mukut set"
-        data-name="Mukut Set 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Mukut Set 1">
-            </a>
-        </div>
+     IMPORTANT:
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Mukut Set 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+     YAHAN SIRF YE 3 CHEEZEIN DENA HAI:
 
+     data-category
+     data-image
+     data-date
 
-    <!-- Product 2 -->
-    <article
-        class="product-card"
-        data-category="mukut set"
-        data-name="Mukut Set 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Mukut Set 2">
-            </a>
-        </div>
+     Product name automatic
+     Product number automatic
+     DN number automatic
+================================================== -->
 
-        <div class="product-info">
-            <div class="product-code">DN-1068</div>
-            <div class="product-name">Mukut Set 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<main
+    class="catalogue"
+    id="catalogue"
+>
 
 
-    <!-- Product 3 -->
-    <article
-        class="product-card"
-        data-category="mukut set"
-        data-name="Mukut Set 3"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak3.jpg" target="_blank">
-                <img src="images/poshak3.jpg" alt="Mukut Set 3">
-            </a>
-        </div>
+<!-- =========================
+     POSHAK
+========================= -->
 
-        <div class="product-info">
-            <div class="product-code">DN-1069</div>
-            <div class="product-name">Mukut Set 3</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
 
-
-    <!-- Product 4 -->
-    <article
-        class="product-card"
-        data-category="nath"
-        data-name="Nath 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Nath 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1066</div>
-            <div class="product-name">Nath 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 5 -->
-    <article
-        class="product-card"
-        data-category="khilone"
-        data-name="Khilone 1"
-        data-date="2026-08-23"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Khilone 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1065</div>
-            <div class="product-name">Khilone 1</div>
-            <div class="product-date">23 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 6 -->
-    <article
-        class="product-card"
-        data-category="jardogi mukut"
-        data-name="Jardogi Mukut 1"
-        data-date="2026-08-23"
-    >
-        <div class="product-image">
-            <a href="images/jardogi1.jpg" target="_blank">
-                <img src="images/jardogi1.jpg" alt="Jardogi Mukut 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1064</div>
-            <div class="product-name">Jardogi Mukut 1</div>
-            <div class="product-date">23 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 7 -->
-    <article
-        class="product-card"
-        data-category="ramadarbar"
-        data-name="Ramadarbar 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/durga1.jpg" target="_blank">
-                <img src="images/durga1.jpg" alt="Ramadarbar 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1066</div>
-            <div class="product-name">Ramadarbar 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 8 -->
-    <article
-        class="product-card"
-        data-category="kamarband"
-        data-name="Kamarband 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/durga1.jpg" target="_blank">
-                <img src="images/durga1.jpg" alt="Kamarband 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1066</div>
-            <div class="product-name">Kamarband 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 9 -->
-    <article
-        class="product-card"
-        data-category="kamarband"
-        data-name="Kamarband 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/durga1.jpg" target="_blank">
-                <img src="images/durga1.jpg" alt="Kamarband 2">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1066</div>
-            <div class="product-name">Kamarband 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 10 -->
-    <article
-        class="product-card"
-        data-category="kamarband"
-        data-name="Kamarband 3"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/durga1.jpg" target="_blank">
-                <img src="images/durga1.jpg" alt="Kamarband 3">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1066</div>
-            <div class="product-name">Kamarband 3</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 11 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.40 PM (1).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.40 PM (1).jpeg" alt="Bali 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 12 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.40 PM.jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.40 PM.jpeg" alt="Bali 2">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 13 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 3"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.41 PM (1).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.41 PM (1).jpeg" alt="Bali 3">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 3</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 14 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 4"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.41 PM (2).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.41 PM (2).jpeg" alt="Bali 4">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 4</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 15 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 5"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.41 PM (3).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.41 PM (3).jpeg" alt="Bali 5">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 5</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 16 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 6"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.41 PM (4).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.41 PM (4).jpeg" alt="Bali 6">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 6</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 17 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 7"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.12.41 PM (5).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.12.41 PM (5).jpeg" alt="Bali 7">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 7</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 18 -->
-    <article
-        class="product-card"
-        data-category="poshak"
-        data-name="Poshak 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.32.34 PM (1).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.32.34 PM (1).jpeg" alt="Poshak 1">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Poshak 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 19 -->
-    <article
-        class="product-card"
-        data-category="poshak"
-        data-name="Poshak 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.32.34 PM (3).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.32.34 PM (3).jpeg" alt="Poshak 2">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Poshak 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 20 -->
-    <article
-        class="product-card"
-        data-category="poshak"
-        data-name="Poshak 3"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 9.02.58 PM.jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 9.02.58 PM.jpeg" alt="Poshak 3">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Poshak 3</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 21 -->
-    <article
-        class="product-card"
-        data-category="poshak"
-        data-name="Poshak 4"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.32.34 PM (8).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.32.34 PM (8).jpeg" alt="Poshak 4">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Poshak 4</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 22 -->
-    <article
-        class="product-card"
-        data-category="poshak"
-        data-name="Poshak 5"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="WhatsApp Image 2026-08-24 at 8.32.34 PM (9).jpeg" target="_blank">
-                <img src="WhatsApp Image 2026-08-24 at 8.32.34 PM (9).jpeg" alt="Poshak 5">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Poshak 5</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
-
-
-    <!-- Product 23 -->
-    
-<!-- Product 24 - Poshak 6 -->
 <article
     class="product-card"
+
     data-category="poshak"
-    data-name="Poshak 6"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.32.34 PM (1).jpeg"
+
     data-date="2026-08-24"
->
-    <div class="product-image">
-        <a href="Kanha/WhatsApp Image 2026-08-30 at 2.56.18 PM.jpeg" target="_blank">
-            <img
-                src="Kanha/WhatsApp Image 2026-08-30 at 2.56.18 PM.jpeg"
-                alt="Poshak 6"
-            >
-        </a>
-    </div>
-
-    <div class="product-info">
-        <div class="product-code">DN-1071</div>
-        <div class="product-name">Poshak 6</div>
-        <div class="product-date">30 Aug 2026</div>
-    </div>
-</article>
+></article>
 
 
-    <!-- Product 24 -->
-    <article
-        class="product-card"
-        data-category="payal"
-        data-name="Payal 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Payal 1">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Payal 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.32.34 PM (3).jpeg"
+
+    data-date="2026-08-24"
+></article>
 
 
-    <!-- Product 25 -->
-    <article
-        class="product-card"
-        data-category="payal"
-        data-name="Payal 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Payal 2">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Payal 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="WhatsApp Image 2026-08-24 at 9.02.58 PM.jpeg"
+
+    data-date="2026-08-24"
+></article>
 
 
-    <!-- Product 26 -->
-    <article
-        class="product-card"
-        data-category="payal"
-        data-name="Payal 3"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Payal 3">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Payal 3</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.32.34 PM (8).jpeg"
+
+    data-date="2026-08-24"
+></article>
 
 
-    <!-- Product 27 -->
-    <article
-        class="product-card"
-        data-category="payal"
-        data-name="Payal 4"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Payal 4">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Payal 4</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.32.34 PM (9).jpeg"
+
+    data-date="2026-08-24"
+></article>
 
 
-    <!-- Product 28 -->
-    <article
-        class="product-card"
-        data-category="mala"
-        data-name="Mala 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Mala 1">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Mala 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="Kanha/WhatsApp Image 2026-08-30 at 2.56.18 PM.jpeg"
+
+    data-date="2026-08-30"
+></article>
 
 
-    <!-- Product 29 -->
-    <article
-        class="product-card"
-        data-category="mala"
-        data-name="Mala 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Mala 2">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Mala 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
 
+    data-category="poshak"
 
-    <!-- Product 30 -->
-    <article
-        class="product-card"
-        data-category="jhula"
-        data-name="Jhula 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Jhula 1">
-            </a>
-        </div>
+    data-image="Kanha/poshak7.jpeg"
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Jhula 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+    data-date="2026-08-30"
+></article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="Kanha/poshak8.jpeg"
+
+    data-date="2026-08-30"
+></article>
+<article
+    class="product-card"
+
+    data-category="poshak"
+
+    data-image="Kanha/poshak9.jpeg"
+
+    data-date="2026-08-30"
+></article>
 
 
-    <!-- Product 31 -->
-    <article
-        class="product-card"
-        data-category="jhula"
-        data-name="Jhula 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Jhula 2">
-            </a>
-        </div>
-
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Jhula 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
 
 
-    <!-- Product 32 -->
-    <article
-        class="product-card"
-        data-category="bansi"
-        data-name="Bansi 1"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Bansi 1">
-            </a>
-        </div>
+<!-- =========================
+     MUKUT SET
+========================= -->
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bansi 1</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="mukut set"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
 
 
-    <!-- Product 33 -->
-    <article
-        class="product-card"
-        data-category="bansi"
-        data-name="Bansi 2"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Bansi 2">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bansi 2</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="mukut set"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
 
 
-    <!-- Product 34 -->
-    <article
-        class="product-card"
-        data-category="bali"
-        data-name="Bali 8"
-        data-date="2026-08-24"
-    >
-        <div class="product-image">
-            <a href="images/poshak1.jpg" target="_blank">
-                <img src="images/poshak1.jpg" alt="Bali 8">
-            </a>
-        </div>
 
-        <div class="product-info">
-            <div class="product-code">DN-1070</div>
-            <div class="product-name">Bali 8</div>
-            <div class="product-date">24 Aug 2026</div>
-        </div>
-    </article>
+<article
+    class="product-card"
+
+    data-category="mukut set"
+
+    data-image="images/poshak3.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     NATH
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="nath"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     KHILONE
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="khilone"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-23"
+></article>
+
+
+
+<!-- =========================
+     JARDOGI MUKUT
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="jardogi mukut"
+
+    data-image="images/jardogi1.jpg"
+
+    data-date="2026-08-23"
+></article>
+
+
+
+<!-- =========================
+     RAMADARBAR
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="ramadarbar"
+
+    data-image="images/durga1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     KAMARBAND
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="kamarband"
+
+    data-image="images/durga1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="kamarband"
+
+    data-image="images/durga1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="kamarband"
+
+    data-image="images/durga1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     BALI
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.40 PM (1).jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.40 PM.jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.41 PM (1).jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.41 PM (2).jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.41 PM (3).jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.41 PM (4).jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="WhatsApp Image 2026-08-24 at 8.12.41 PM (5).jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bali"
+
+    data-image="Kanha/bali8.jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     PAYAL
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="payal"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="payal"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="payal"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="payal"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     MALA
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="mala"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="mala"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     JHULA
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="jhula"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="jhula"
+
+    data-image="images/poshak1.jpg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<!-- =========================
+     BANSI
+========================= -->
+
+<article
+    class="product-card"
+
+    data-category="bansi"
+
+    data-image="Kanha/bansi1.jpeg"
+
+    data-date="2026-08-24"
+></article>
+
+
+
+<article
+    class="product-card"
+
+    data-category="bansi"
+
+    data-image="Kanha/bansi2.jpeg"
+
+    data-date="2026-08-24"
+></article>
+
 
 </main>
 
 
+
 <script>
 
-const cards = [...document.querySelectorAll(".product-card")];
-const categories = document.querySelectorAll(".category");
-const sortButtons = document.querySelectorAll(".sort-btn");
-const searchInput = document.getElementById("searchInput");
-const itemCount = document.getElementById("itemCount");
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const catalogue =
+    document.getElementById("catalogue");
+
+
+const searchInput =
+    document.getElementById("searchInput");
+
+
+const itemCount =
+    document.getElementById("itemCount");
+
+
+const categories =
+    document.querySelectorAll(".category");
+
+
+const sortButtons =
+    document.querySelectorAll(".sort-btn");
+
+
+/* ==================================================
+   ORIGINAL PRODUCT CARDS
+================================================== */
+
+const cards = [
+    ...document.querySelectorAll(".product-card")
+];
+
+
+/* ==================================================
+   CURRENT SETTINGS
+================================================== */
 
 let selectedCategory = "all";
+
 let selectedSort = "newest";
 
 
-function renderCatalogue() {
+/* ==================================================
+   CATEGORY DISPLAY NAMES
+================================================== */
 
-    let filtered = cards.filter(card => {
+const categoryNames = {
 
-        const category = card.dataset.category;
-        const name = card.dataset.name.toLowerCase();
+    "khilone": "Khilone",
 
-        const search =
-            searchInput.value.toLowerCase().trim();
+    "mukut set": "Mukut Set",
 
-        const categoryMatch =
-            selectedCategory === "all" ||
-            category === selectedCategory;
+    "nath": "Nath",
 
-        const searchMatch =
-            name.includes(search);
+    "jardogi mukut": "Jardogi Mukut",
 
-        return categoryMatch && searchMatch;
-    });
+    "ramadarbar": "Ramadarbar",
 
+    "kamarband": "Kamarband",
 
-    /* Sorting */
+    "bali": "Bali",
 
-    if (selectedSort === "newest") {
+    "poshak": "Poshak",
 
-        filtered.sort((a, b) =>
-            new Date(b.dataset.date) -
-            new Date(a.dataset.date)
-        );
+    "payal": "Payal",
 
-    }
+    "mala": "Mala",
 
-    if (selectedSort === "oldest") {
+    "jhula": "Jhula",
 
-        filtered.sort((a, b) =>
-            new Date(a.dataset.date) -
-            new Date(b.dataset.date)
-        );
+    "bansi": "Bansi",
 
-    }
+    "baal": "Baal",
 
-    if (selectedSort === "az") {
+    "kada": "Kadha"
 
-        filtered.sort((a, b) =>
-            a.dataset.name.localeCompare(
-                b.dataset.name
-            )
-        );
-
-    }
+};
 
 
-    const catalogue =
-        document.getElementById("catalogue");
+/* ==================================================
+   GET CATEGORY NAME
+================================================== */
 
-    catalogue.innerHTML = "";
+function getCategoryName(category) {
 
-    filtered.forEach(card => {
-        catalogue.appendChild(card);
-    });
+    return categoryNames[category] || category;
 
-
-    itemCount.textContent =
-        `${filtered.length} items`;
 }
 
 
-/* Category click */
+/* ==================================================
+   CREATE AUTOMATIC DN NUMBER
+================================================== */
+
+function getDNNumber(number) {
+
+    /*
+       Poshak 1 = DN-1001
+       Poshak 2 = DN-1002
+       Poshak 3 = DN-1003
+
+       etc.
+    */
+
+    return `DN-${1000 + number}`;
+
+}
+
+
+/* ==================================================
+   FORMAT DATE
+================================================== */
+
+function formatDate(dateString) {
+
+    const date =
+        new Date(
+            dateString + "T00:00:00"
+        );
+
+
+    return date.toLocaleDateString(
+        "en-GB",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* ==================================================
+   MAKE PRODUCT CARD
+================================================== */
+
+function updateCard(
+    card,
+    number
+) {
+
+    const category =
+        card.dataset.category;
+
+
+    const image =
+        card.dataset.image;
+
+
+    const date =
+        card.dataset.date;
+
+
+    const categoryName =
+        getCategoryName(category);
+
+
+    /*
+       IMPORTANT:
+
+       Search ke liye original
+       product name bhi save kar rahe hain.
+    */
+
+    card.dataset.searchName =
+        categoryName.toLowerCase();
+
+
+    /*
+       Automatic product name
+    */
+
+    const productName =
+        `${categoryName} ${number}`;
+
+
+    /*
+       Automatic DN
+    */
+
+    const productCode =
+        getDNNumber(number);
+
+
+    /*
+       Card HTML
+    */
+
+    card.innerHTML = `
+
+        <div class="product-image">
+
+            <a
+                href="${image}"
+                target="_blank"
+            >
+
+                <img
+                    src="${image}"
+                    alt="${productName}"
+                >
+
+            </a>
+
+        </div>
+
+
+        <div class="product-info">
+
+            <div class="product-code">
+
+                ${productCode}
+
+            </div>
+
+
+            <div class="product-name">
+
+                ${productName}
+
+            </div>
+
+
+            <div class="product-date">
+
+                ${formatDate(date)}
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   RENDER CATALOGUE
+================================================== */
+
+function renderCatalogue() {
+
+
+    /*
+       SEARCH VALUE
+    */
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    /*
+       ----------------------------------------------
+       STEP 1
+       CATEGORY FILTER
+       ----------------------------------------------
+    */
+
+    let filtered =
+        cards.filter(card => {
+
+            const category =
+                card.dataset.category
+                    .toLowerCase();
+
+
+            return (
+                selectedCategory === "all" ||
+                category === selectedCategory
+            );
+
+        });
+
+
+    /*
+       ----------------------------------------------
+       STEP 2
+       SEARCH FILTER
+       ----------------------------------------------
+
+       Search in:
+
+       Category
+       Image filename
+       ----------------------------------------------
+    */
+
+    if (search !== "") {
+
+        filtered =
+            filtered.filter(card => {
+
+                const category =
+                    getCategoryName(
+                        card.dataset.category
+                    ).toLowerCase();
+
+
+                const image =
+                    card.dataset.image
+                        .toLowerCase();
+
+
+                return (
+                    category.includes(search) ||
+                    image.includes(search)
+                );
+
+            });
+
+    }
+
+
+    /*
+       ----------------------------------------------
+       STEP 3
+       SORT
+       ----------------------------------------------
+    */
+
+
+    if (selectedSort === "newest") {
+
+        filtered.sort((a, b) => {
+
+            const dateA =
+                new Date(a.dataset.date);
+
+
+            const dateB =
+                new Date(b.dataset.date);
+
+
+            return dateB - dateA;
+
+        });
+
+    }
+
+
+    if (selectedSort === "oldest") {
+
+        filtered.sort((a, b) => {
+
+            const dateA =
+                new Date(a.dataset.date);
+
+
+            const dateB =
+                new Date(b.dataset.date);
+
+
+            return dateA - dateB;
+
+        });
+
+    }
+
+
+    if (selectedSort === "az") {
+
+        filtered.sort((a, b) => {
+
+            const nameA =
+                getCategoryName(
+                    a.dataset.category
+                );
+
+
+            const nameB =
+                getCategoryName(
+                    b.dataset.category
+                );
+
+
+            return nameA.localeCompare(nameB);
+
+        });
+
+    }
+
+
+    /*
+       ----------------------------------------------
+       STEP 4
+       CATEGORY TOTALS
+       ----------------------------------------------
+
+       Example:
+
+       Poshak = 7
+
+       categoryTotals["poshak"] = 7
+    */
+
+    const categoryTotals = {};
+
+
+    filtered.forEach(card => {
+
+        const category =
+            card.dataset.category;
+
+
+        if (!categoryTotals[category]) {
+
+            categoryTotals[category] = 0;
+
+        }
+
+
+        categoryTotals[category]++;
+
+    });
+
+
+    /*
+       ----------------------------------------------
+       STEP 5
+       NUMBERING
+       ----------------------------------------------
+    */
+
+    const counters = {};
+
+
+    filtered.forEach(card => {
+
+        const category =
+            card.dataset.category;
+
+
+        if (!counters[category]) {
+
+            counters[category] = 0;
+
+        }
+
+
+        counters[category]++;
+
+
+        let number;
+
+
+        /*
+           ==========================================
+           NEWEST FIRST
+           ==========================================
+
+           Example:
+
+           30 Aug = Poshak 1
+           28 Aug = Poshak 2
+           26 Aug = Poshak 3
+           24 Aug = Poshak 4
+        */
+
+        if (selectedSort === "newest") {
+
+            number =
+                counters[category];
+
+        }
+
+
+        /*
+           ==========================================
+           OLDEST FIRST
+           ==========================================
+
+           Example:
+
+           24 Aug = Poshak 4
+           26 Aug = Poshak 3
+           28 Aug = Poshak 2
+           30 Aug = Poshak 1
+        */
+
+        else if (
+            selectedSort === "oldest"
+        ) {
+
+            number =
+                categoryTotals[category]
+                -
+                counters[category]
+                +
+                1;
+
+        }
+
+
+        /*
+           ==========================================
+           A → Z
+           ==========================================
+        */
+
+        else {
+
+            number =
+                counters[category];
+
+        }
+
+
+        /*
+           Card update
+        */
+
+        updateCard(
+            card,
+            number
+        );
+
+    });
+
+
+    /*
+       ----------------------------------------------
+       STEP 6
+       CLEAR CATALOGUE
+       ----------------------------------------------
+    */
+
+    catalogue.innerHTML = "";
+
+
+    /*
+       ----------------------------------------------
+       STEP 7
+       SHOW PRODUCTS
+       ----------------------------------------------
+    */
+
+    if (filtered.length === 0) {
+
+        catalogue.innerHTML = `
+
+            <div class="no-results">
+
+                No items found
+
+            </div>
+
+        `;
+
+    }
+
+
+    else {
+
+        filtered.forEach(card => {
+
+            catalogue.appendChild(card);
+
+        });
+
+    }
+
+
+    /*
+       ----------------------------------------------
+       STEP 8
+       ITEM COUNT
+       ----------------------------------------------
+    */
+
+    itemCount.textContent =
+        `${filtered.length} items`;
+
+}
+
+
+/* ==================================================
+   CATEGORY CLICK
+================================================== */
 
 categories.forEach(category => {
 
-    category.addEventListener("click", () => {
+    category.addEventListener(
+        "click",
+        () => {
 
-        categories.forEach(item =>
-            item.classList.remove("active")
-        );
 
-        category.classList.add("active");
+            /*
+               Remove active
+               from all categories
+            */
 
-        selectedCategory =
-            category.dataset.category;
+            categories.forEach(item => {
 
-        renderCatalogue();
-    });
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            /*
+               Add active
+               to clicked category
+            */
+
+            category.classList.add(
+                "active"
+            );
+
+
+            /*
+               Selected category
+            */
+
+            selectedCategory =
+                category.dataset.category;
+
+
+            /*
+               Render again
+            */
+
+            renderCatalogue();
+
+        }
+    );
 
 });
 
 
-/* Sort click */
+/* ==================================================
+   SORT BUTTON CLICK
+================================================== */
 
 sortButtons.forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+        "click",
+        () => {
 
-        sortButtons.forEach(item =>
-            item.classList.remove("active")
-        );
 
-        button.classList.add("active");
+            /*
+               Remove active
+            */
 
-        selectedSort =
-            button.dataset.sort;
+            sortButtons.forEach(item => {
 
-        renderCatalogue();
-    });
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+            /*
+               Add active
+            */
+
+            button.classList.add(
+                "active"
+            );
+
+
+            /*
+               Selected sort
+            */
+
+            selectedSort =
+                button.dataset.sort;
+
+
+            /*
+               Render
+            */
+
+            renderCatalogue();
+
+        }
+    );
 
 });
 
 
-/* Search */
+/* ==================================================
+   SEARCH
+================================================== */
 
 searchInput.addEventListener(
     "input",
-    renderCatalogue
+    () => {
+
+        /*
+           Search box mein
+           jaise-jaise type hoga,
+           catalogue turant update hoga.
+        */
+
+        renderCatalogue();
+
+    }
 );
 
 
-/* Initial render */
+/* ==================================================
+   INITIAL LOAD
+================================================== */
 
 renderCatalogue();
 
+
 </script>
 
+
 </body>
+
 </html>
 ```
