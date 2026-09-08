@@ -2050,10 +2050,7 @@ function renderCatalogue() {
                         .toLowerCase();
 
 
-                return (
-                    category.includes(search) ||
-                    image.includes(search)
-                );
+                return category.includes(search);
 
             });
 
